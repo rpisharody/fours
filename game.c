@@ -34,17 +34,19 @@ string get_word(const char* filename, int nWord){
 	return (Word);
 }
 
-bool analyze(string guessed, const string& Actual, int nWord) {
-	int White = 0, Black = 0;
+bool analyze(string guessed, string Actual, int nWord) {
+	int White = 0, Grey = 0;
 	guessed = guessed.substr(0, nWord);
-	string::const_iterator ii = Actual.begin();
+	string::iterator ii = Actual.begin();
 	string::iterator jj = guessed.begin();
 	while ( ii != Actual.end() ) {
-		if (*ii++ == *jj) {
+		if (*ii == *jj) {
 			*jj = '0';
+			*ii = '0';
 			++White;
 		}
 		++jj;
+		++ii;
 	}
 	string tmp;
 	for ( jj = guessed.begin(); jj != guessed.end(); ++jj ) {
@@ -52,12 +54,19 @@ bool analyze(string guessed, const string& Actual, int nWord) {
 			tmp += *jj;
 	}
 	guessed = tmp;
+	tmp.clear();
+	for ( jj = Actual.begin(); jj != Actual.end(); ++jj ) {
+		if (*jj != '0') 
+			tmp += *jj;
+	}
+	Actual = tmp;
+	tmp.clear();
 	for ( jj = guessed.begin(); jj != guessed.end(); ++jj )
 		if ( std::search (Actual.begin(), Actual.end(), jj, jj+1) != Actual.end() )
-			++Black;
+			++Grey;
 
-	cout << "Whites : " << White << endl
-	     << "Blacks : " << Black << endl;
+	cout << "White : " << White << endl
+	     << "Grey  : " << Grey << endl;
 	if (White == nWord)
 		return false;
 	 else 

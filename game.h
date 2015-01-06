@@ -4,6 +4,6 @@
 #include <string>
 
 std::string get_word(const char* filename, int nWord = 4);
-bool analyze(std::string, const std::string&, int nWord = 4);
+bool analyze(std::string, std::string, int nWord = 4);
 
 #endif
