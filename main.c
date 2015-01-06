@@ -16,7 +16,6 @@ int main (int argc, char *argv[]) {
 	}
 
 	string Word = get_word(argv[1], 4);
-	cout << "I guessed : " << Word << endl;
 	cout << "I have a word in my mind." << endl;
 	cout << "What would you guess : " ; 
 	string guess; cin >> guess;
