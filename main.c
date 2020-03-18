@@ -16,14 +16,16 @@ int main (int argc, char *argv[]) {
 	}
 
 	string Word = get_word(argv[1], 4);
+        int tries = 1;
 	cout << "I have a word in my mind." << endl;
 	cout << "What would you guess : " ; 
 	string guess; cin >> guess;
 	while ( analyze(guess, Word) ) {
 		cout << "Not quite. What else ? ";
 		cin >> guess;
+                ++tries;
 	}
 
-	cout << "Congratulations ... " << endl;
+	cout << "Congratulations ... " << endl << "It took " << tries << " guesses !" << endl;
 	return 0;
 }
